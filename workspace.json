@@ -1,0 +1,344 @@
+{
+  "version": 2,
+  "projects": {
+    "app-api": {
+      "root": "apps/app-api",
+      "sourceRoot": "apps/app-api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:webpack",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/app-api",
+            "main": "apps/app-api/src/main.ts",
+            "tsConfig": "apps/app-api/tsconfig.app.json",
+            "assets": [
+              "apps/app-api/src/assets"
+            ],
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/app-api/src/environments/environment.ts",
+                  "with": "apps/app-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:node",
+          "options": {
+            "buildTarget": "app-api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/app-api/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app-api"
+          ],
+          "options": {
+            "jestConfig": "apps/app-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "app-ui": {
+      "root": "apps/app-ui",
+      "sourceRoot": "apps/app-ui",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": "production",
+          "options": {
+            "root": "apps/app-ui",
+            "outputPath": "dist/apps/app-ui",
+            "generatePackageJson": true
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "options": {
+            "buildTarget": "app-ui:build",
+            "dev": true
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "app-ui:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "app-ui:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/app-ui"
+          ],
+          "options": {
+            "jestConfig": "apps/app-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/app-ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "dm-chemistry": {
+      "root": "libs/chemistry",
+      "sourceRoot": "libs/chemistry/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/chemistry/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/chemistry"
+          ],
+          "options": {
+            "jestConfig": "libs/chemistry/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dm-models": {
+      "root": "libs/models",
+      "sourceRoot": "libs/models/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/models/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/models"
+          ],
+          "options": {
+            "jestConfig": "libs/models/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "dm-theme": {
+      "root": "libs/theme",
+      "sourceRoot": "libs/theme/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/theme/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/theme"
+          ],
+          "options": {
+            "jestConfig": "libs/theme/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "front-ui": {
+      "root": "apps/front-ui",
+      "sourceRoot": "apps/front-ui",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/next:build",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "defaultConfiguration": "production",
+          "options": {
+            "root": "apps/front-ui",
+            "outputPath": "dist/apps/front-ui"
+          },
+          "configurations": {
+            "development": {},
+            "production": {}
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/next:server",
+          "defaultConfiguration": "development",
+          "options": {
+            "buildTarget": "front-ui:build",
+            "dev": true
+          },
+          "configurations": {
+            "development": {
+              "buildTarget": "front-ui:build:development",
+              "dev": true
+            },
+            "production": {
+              "buildTarget": "front-ui:build:production",
+              "dev": false
+            }
+          }
+        },
+        "export": {
+          "executor": "@nrwl/next:export",
+          "options": {
+            "buildTarget": "front-ui:build:production"
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/front-ui"
+          ],
+          "options": {
+            "jestConfig": "apps/front-ui/jest.config.ts",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "apps/front-ui/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
+    "next-components": {
+      "root": "libs/next/components",
+      "sourceRoot": "libs/next/components/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/next/components/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/next/components"
+          ],
+          "options": {
+            "jestConfig": "libs/next/components/jest.config.ts",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "react-axios": {
+      "root": "libs/react/axios",
+      "sourceRoot": "libs/react/axios/src",
+      "projectType": "library",
+      "tags": [],
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
+          "options": {
+            "lintFilePatterns": [
+              "libs/react/axios/**/*.{ts,tsx,js,jsx}"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/react/axios"
+          ],
+          "options": {
+            "jestConfig": "libs/react/axios/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
+}

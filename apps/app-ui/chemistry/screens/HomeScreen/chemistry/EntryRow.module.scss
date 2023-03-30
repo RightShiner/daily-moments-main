@@ -1,0 +1,7 @@
+.wrapper {
+  img {
+    object-fit: cover;
+    border-radius: var(--chakra-radii-lg);
+    cursor: pointer;
+  }
+}

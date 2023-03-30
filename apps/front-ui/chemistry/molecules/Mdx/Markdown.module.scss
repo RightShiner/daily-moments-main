@@ -1,0 +1,139 @@
+@import "variables";
+@import "colors";
+
+$mobile-font-size: 0.93rem;
+
+.markdown {
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: inherit;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+  }
+
+  p {
+    font-size: $mobile-font-size;
+    margin-block-start: 1.2em;
+    margin-block-end: 1.2em;
+
+    @media (min-width: $dim-screen-sm) {
+      font-size: inherit;
+    }
+  }
+
+  ul, ol {
+    padding: inherit;
+    margin: inherit;
+    padding-inline-start: 40px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    > li {
+      font-size: $mobile-font-size;
+      margin-block-start: 0.4em;
+      margin-block-end: 0.4em;
+
+      @media (min-width: $dim-screen-sm) {
+        font-size: inherit;
+      }
+    }
+  }
+
+  a {
+    font-style: italic;
+    text-decoration: underline;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
+
+  blockquote {
+    padding: $dim-padding-internal-large;
+    border: thin solid $color-border;
+    border-radius: $dim-border-radius;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    p:first-child {
+      margin-block-start: 0;
+    }
+
+    p:last-child {
+      margin-block-end: 0;
+    }
+  }
+
+  table {
+    display: block;
+    overflow: auto;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    @media (min-width: $dim-screen-md) {
+      display: table;
+      width: 100%;
+    }
+
+    tr {
+      border-top: thin solid $color-border;
+
+      th {
+        font-weight: bold;
+        white-space: nowrap;
+        text-align: start;
+      }
+
+      th, td {
+        padding: $dim-padding-internal-medium;
+        border-left: thin solid $color-border;
+      }
+
+      th:last-child, td:last-child {
+        border-right: thin solid $color-border;
+      }
+    }
+
+    tbody {
+      tr:last-child {
+        border-bottom: thin solid $color-border;
+      }
+    }
+  }
+
+  > :first-child {
+    margin-block-start: 0;
+  }
+
+  > :last-child {
+    margin-block-end: 0;
+  }
+
+  img {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  img.img {
+    max-height: 400px;
+
+    @media (min-width: $dim-screen-sm) {
+      max-height: 500px;
+    }
+
+    @media (min-width: $dim-screen-md) {
+      max-height: 700px;
+    }
+  }
+
+  p {
+    > .imageWrapper {
+      margin: $dim-padding-internal-medium auto;
+
+      @media (min-width: $dim-screen-md) {
+        margin: $dim-padding-internal-xlarge auto;
+      }
+    }
+  }
+}
